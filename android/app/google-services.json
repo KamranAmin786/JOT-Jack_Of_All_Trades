@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "443146648668",
+    "project_id": "jack-of-all-trades-312911",
+    "storage_bucket": "jack-of-all-trades-312911.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:443146648668:android:e49a815dffc04b5fbcba99",
+        "android_client_info": {
+          "package_name": "com.example.fyp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "443146648668-6fut2memeq7i1imlkls300jgkjvjbv9k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fyp",
+            "certificate_hash": "28090d4060dfbd8ec1a46cb53c6c1be8b8748944"
+          }
+        },
+        {
+          "client_id": "443146648668-fujb71ahsdjm7fgmjvbt1uqkjrtq71f6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5I0PfGRDY3hKmluQaKGV_6Nqx9o76zc4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "443146648668-fujb71ahsdjm7fgmjvbt1uqkjrtq71f6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
