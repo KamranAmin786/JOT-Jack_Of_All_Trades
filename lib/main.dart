@@ -1,5 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:fyp/AppColors.dart';
+import 'package:fyp/AppLocalizations .dart';
 import 'package:fyp/screens/HomeOwner/Interactive/bottom_navigator.dart';
 import 'package:fyp/screens/HomeOwner/Interactive/home_screen.dart';
 import 'package:fyp/screens/HomeOwner/Interactive/profile_screen.dart';
@@ -21,6 +24,28 @@ class FYP extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      supportedLocales: [
+        Locale( 'en' , 'US' ),
+        Locale( 'ur' , 'PK' ),
+      ],
+
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+
+      localeResolutionCallback: (locale, supportedLocales) {
+        for (var supportedLocaleLanguage in supportedLocales) {
+          if (supportedLocaleLanguage.languageCode == locale.languageCode &&
+              supportedLocaleLanguage.countryCode == locale.countryCode) {
+            return supportedLocaleLanguage;
+          }
+        }
+
+        // If device not support with locale to get language code then default get first on from the list
+        return supportedLocales.last;
+      },
       routes: {
         ProfileScreen.id: (context) => ProfileScreen(),
         TaskDetailsScreen.id: (context) => TaskDetailsScreen(),
@@ -33,6 +58,13 @@ class FYP extends StatelessWidget {
       },
       title: 'Jack Of All Trades',
       home: WelcomeScreen(),
+      theme: ThemeData(
+        primarySwatch: mColorSwatch,
+        fontFamily: 'Montserrat',
+        textSelectionTheme: TextSelectionThemeData(
+          selectionHandleColor: Colors.transparent,
+        ),
+      ),
     );
   }
 }

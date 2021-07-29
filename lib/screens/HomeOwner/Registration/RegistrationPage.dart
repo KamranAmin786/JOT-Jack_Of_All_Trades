@@ -7,6 +7,8 @@ import 'package:fyp/AppColors.dart';
 import 'package:fyp/Professional/ProfessionalHomeScreen.dart';
 import 'package:fyp/components/InputField.dart';
 import 'package:fyp/constants.dart';
+import 'package:fyp/screens/HomeOwner/Registration/HomeownerRegistrationPage.dart';
+import 'package:fyp/screens/HomeOwner/Registration/ProfessionalRegistrationPage.dart';
 import 'package:fyp/services/auth_services.dart';
 import '../SignIn/homeowner_signin_screen.dart';
 
@@ -30,7 +32,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.role);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Color(0xFF5145C1),
@@ -181,10 +182,21 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                       color: Colors.white,
                                       onPressed: () {
                                    //    codeSent ? AuthService().signInWithOTP(smsCode, verificationId) : verifyPhone(phoneNumber);
-                                        Navigator.push(
+                                        widget.role == 'Homeowner'
+                                            ? Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                                builder: (context) => ProfessionalHomeScreen(
+                                                builder: (context) =>
+                                                    HomeownerRegistrationPage(
+                                                      role: widget.role,
+                                                      phoneNumber: phoneNumber,
+                                                    )))
+                                            : Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => ProfessionalRegistrationPage(
+                                                  role: widget.role,
+                                                  phoneNumber: phoneNumber,
                                                 )));
                                       },
                                       child : codeSent ? Text(

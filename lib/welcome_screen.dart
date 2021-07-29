@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fyp/AppLocalizations%20.dart';
 import 'package:fyp/screens/HomeOwner/Registration/RegistrationMethod.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -38,7 +39,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   ),
                   Center(
                     child: Text(
-                      'of all trades',
+                      AppLocalizations.of(context).translate('first_string'),
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 28.0,

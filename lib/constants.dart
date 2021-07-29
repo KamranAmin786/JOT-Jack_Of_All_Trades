@@ -48,3 +48,6 @@ const kWalletScreenAppIconBackground = Colors.white38;
 const kTaskDetailScreenButtonColor = Color(0xFF5145C1);
 const kTaskDetailScreenButtonColorSelected = Colors.white;
 const kHomeContainerColor = Color(0xFF5145C1);
+
+
+final List<String> kSkills = ['Electrition','Plumber','Carpenter','Mover','Cleaner','Aluminium'];

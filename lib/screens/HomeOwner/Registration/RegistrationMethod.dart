@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fyp/HomeownerInformationPage.dart';
+import 'package:fyp/screens/HomeOwner/Registration/HomeownerRegistrationPage.dart';
+import 'package:fyp/screens/HomeOwner/Registration/ProfessionalRegistrationPage.dart';
 import 'package:fyp/screens/HomeOwner/Registration/RegistrationPage.dart';
 import 'package:fyp/screens/HomeOwner/SignIn/homeowner_signin_screen.dart';
 
@@ -194,7 +195,7 @@ class _RegistrationMethodState extends State<RegistrationMethod> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          HomeownerInformationPage(
+                                          RegistrationPage(
                                             role: widget.role,
                                           )))
                               : Navigator.push(

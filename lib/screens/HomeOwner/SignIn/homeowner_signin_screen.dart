@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fyp/screens/HomeOwner/Registration/HomeownerRegistrationPage.dart';
 import 'package:fyp/components/InputField.dart';
 import 'package:fyp/screens/HomeOwner/Interactive/bottom_navigator.dart';
 
@@ -63,7 +64,6 @@ class HomeownerSignIn extends StatelessWidget {
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 25.0,
-                          fontFamily: 'Montserrat',
                           fontWeight: FontWeight.bold),
                     )
                   ],
@@ -76,7 +76,6 @@ class HomeownerSignIn extends StatelessWidget {
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 28.0,
-                      fontFamily: 'Montserrat',
                       fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
@@ -87,18 +86,16 @@ class HomeownerSignIn extends StatelessWidget {
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 25.0,
-                      fontFamily: 'Montserrat',
                       fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   height: 5.0,
                 ),
                 Text(
-                  'credentials for login',
+                  'number for login',
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 25.0,
-                      fontFamily: 'Montserrat',
                       fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
@@ -112,16 +109,11 @@ class HomeownerSignIn extends StatelessWidget {
                       child: Column(
                         children: <Widget>[
                           InputField(
-                            text: 'Enter your email',
-                            icon: Icons.email,
+                            text: 'Enter your number',
+                            icon: Icons.phone,
                           ),
                           SizedBox(
                             height: 30.0,
-                          ),
-                          InputField(
-                            text: 'Enter your password',
-                            icon: Icons.password,
-                            obscureText: true,
                           ),
                           SizedBox(
                             height: 50.0,
@@ -144,7 +136,6 @@ class HomeownerSignIn extends StatelessWidget {
                                     style: TextStyle(
                                       fontSize: 18.0,
                                       color: Color(0xFF5145C1),
-                                      fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -160,40 +151,18 @@ class HomeownerSignIn extends StatelessWidget {
                                     MainAxisAlignment.spaceAround,
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: <Widget>[
-                                  FlatButton(
-                                    minWidth: 0.0,
-                                    height: 0.0,
-                                    padding: EdgeInsets.all(0.0),
+                                  InkWell(
                                     child: Text(
                                       'create a new account',
                                       style: TextStyle(
                                         decoration: TextDecoration.underline,
                                         color: Colors.white,
                                         fontSize: 15.0,
-                                        fontFamily: 'Montserrat',
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    onPressed: () {
-                                      // todo remaining
-                                    },
-                                  ),
-                                  FlatButton(
-                                    minWidth: 0.0,
-                                    height: 0.0,
-                                    padding: EdgeInsets.all(0.0),
-                                    child: Text(
-                                      'forgot password',
-                                      style: TextStyle(
-                                        decoration: TextDecoration.underline,
-                                        color: Colors.white,
-                                        fontSize: 15.0,
-                                        fontFamily: 'Montserrat',
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    onPressed: () {
-                                      //na
+                                    onTap: (){
+                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeownerRegistrationPage(role: 'Homeowner',)));
                                     },
                                   ),
                                 ],

@@ -6,22 +6,31 @@ import 'package:fyp/widget/PrimaryButton.dart';
 import 'package:fyp/widget/RadioButton.dart';
 import 'package:intl/intl.dart';
 
-import 'screens/HomeOwner/Interactive/bottom_navigator.dart';
+import '../Interactive/bottom_navigator.dart';
 
-class HomeownerInformationPage extends StatefulWidget {
+class HomeownerRegistrationPage extends StatefulWidget {
   final String role;
+  final String phoneNumber;
 
-  HomeownerInformationPage({this.role});
+  HomeownerRegistrationPage({this.role,this.phoneNumber});
 
   @override
-  _HomeownerInformationPageState createState() =>
-      _HomeownerInformationPageState();
+  _HomeownerRegistrationPageState createState() =>
+      _HomeownerRegistrationPageState();
 }
 
-class _HomeownerInformationPageState extends State<HomeownerInformationPage> {
+class _HomeownerRegistrationPageState extends State<HomeownerRegistrationPage> {
   TextEditingController dateCtl = TextEditingController();
+  TextEditingController phoneNUmber = TextEditingController();
 
   String birthDateController;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    phoneNUmber.text=widget.phoneNumber;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,6 +104,8 @@ class _HomeownerInformationPageState extends State<HomeownerInformationPage> {
                   InputField(
                     text: 'Enter your number',
                     icon: Icons.phone,
+                    controller: phoneNUmber,
+                    enabled: false,
                   ),
                   SizedBox(
                     height: 30.0,

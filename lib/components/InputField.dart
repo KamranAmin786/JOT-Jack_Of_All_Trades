@@ -10,6 +10,7 @@ class InputField extends StatelessWidget {
   final IconData icon;
   final Function onPressed;
   final Function validator;
+  final bool enabled;
 
   InputField(
       {this.text = '',
@@ -18,6 +19,7 @@ class InputField extends StatelessWidget {
       this.controller,
       this.onPressed,
       this.validator,
+        this.enabled = true,
       this.icon});
 
   @override
@@ -31,6 +33,7 @@ class InputField extends StatelessWidget {
         children: [
           Flexible(
               child: TextFormField(
+                enabled: enabled,
             keyboardType: type,
             validator: validator,
             obscureText: obscureText,
