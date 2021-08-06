@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fyp/AppLocalizations%20.dart';
+import 'package:fyp/AppColors.dart';
 import 'package:fyp/screens/HomeOwner/Registration/RegistrationMethod.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
@@ -26,7 +27,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 children: <Widget>[
                   Center(
                     child: Text(
-                      'Jack',
+                      "hello".tr().toString(),
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 28.0,
@@ -39,7 +40,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   ),
                   Center(
                     child: Text(
-                      AppLocalizations.of(context).translate('first_string'),
+                      "text1".tr().toString(),
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 28.0,
@@ -61,7 +62,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   ),
                   Center(
                     child: Text(
-                      'continue as',
+                      "text2".tr().toString(),
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 28.0,
@@ -70,7 +71,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(vertical: 30.0),
+                    padding: EdgeInsets.symmetric(vertical: 60.0),
                     child: Column(
                       children: <Widget>[
                         Container(
@@ -81,9 +82,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                 borderRadius: BorderRadius.circular(25.0)),
                             color: Colors.white,
                             child: Text(
-                              'Homeowner',
+                              "text3".tr().toString(),
                               style: TextStyle(
-                                  fontSize: 18.0, color: Color(0xFF5145C1)),
+                                  fontSize: 18.0,
+                                  color: Color(0xFF5145C1),
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.bold),
                             ),
                             onPressed: () {
                               role = 'Homeowner';
@@ -108,9 +112,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             elevation: 10.0,
                             color: Colors.white,
                             child: Text(
-                              'Professional',
+                              "text4".tr().toString(),
                               style: TextStyle(
-                                  fontSize: 18.0, color: Color(0xFF5145C1)),
+                                fontSize: 18.0,
+                                color: Color(0xFF5145C1),
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                             onPressed: () {
                               role = 'Professional';
@@ -122,6 +130,35 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                           )));
                             },
                           ),
+                        ),
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            InkWell(
+                              child: Text(
+                                'English (US)',
+                                style: TextStyle(color: colorWhite),
+                              ),
+                              onTap: () {
+                                context.locale = Locale('en', 'US');
+                              },
+                            ),
+                            SizedBox(
+                              width: 20.0,
+                            ),
+                            InkWell(
+                              child: Text(
+                                'اردو',
+                                style: TextStyle(color: colorWhite),
+                              ),
+                              onTap: () {
+                                context.locale = Locale('ur', 'PK');
+                              },
+                            ),
+                          ],
                         ),
                       ],
                     ),

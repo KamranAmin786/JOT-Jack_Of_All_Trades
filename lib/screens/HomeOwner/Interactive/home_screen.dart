@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fyp/constants.dart';
 import 'package:fyp/components/featured_items.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String id = 'home_screen';
@@ -24,7 +25,7 @@ class HomeScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0),
                       child: Text(
-                        'How can we help you?',
+                        "text25".tr().toString(),
                         style: kHomeScreenHeadings,
                       ),
                     ),
@@ -37,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
-                          hintText: 'Search for required service',
+                          hintText: "text26".tr().toString(),
                           hintStyle: TextStyle(
                             color: Colors.black,
                           ),
@@ -52,7 +53,7 @@ class HomeScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0),
                       child: Text(
-                        'Featured',
+                        "text27".tr().toString(),
                         style: kHomeScreenHeadings,
                       ),
                     ),
@@ -80,7 +81,7 @@ class HomeScreen extends StatelessWidget {
                             scrollDirection: Axis.horizontal,
                             children: <Widget>[
                               FeaturedServices(
-                                name: 'Electrician',
+                                name: "text28".tr().toString(),
                                 image: Image.asset(
                                   'images/city_background.jpg',
                                   fit: BoxFit.cover,
@@ -88,7 +89,7 @@ class HomeScreen extends StatelessWidget {
                                 icon: kRatingIcon,
                               ),
                               FeaturedServices(
-                                name: 'Plumber',
+                                name: "text29".tr().toString(),
                                 image: Image.asset(
                                   'images/city_background.jpg',
                                   fit: BoxFit.cover,
@@ -96,7 +97,7 @@ class HomeScreen extends StatelessWidget {
                                 icon: kRatingIcon,
                               ),
                               FeaturedServices(
-                                name: 'Mover',
+                                name: "text30".tr().toString(),
                                 image: Image.asset(
                                   'images/city_background.jpg',
                                   fit: BoxFit.cover,
@@ -104,7 +105,7 @@ class HomeScreen extends StatelessWidget {
                                 icon: kRatingIcon,
                               ),
                               FeaturedServices(
-                                name: 'Carpenter',
+                                name: "text31".tr().toString(),
                                 image: Image.asset(
                                   'images/city_background.jpg',
                                   fit: BoxFit.cover,
@@ -112,7 +113,7 @@ class HomeScreen extends StatelessWidget {
                                 icon: kRatingIcon,
                               ),
                               FeaturedServices(
-                                name: 'Cleaner',
+                                name: "text32".tr().toString(),
                                 image: Image.asset(
                                   'images/city_background.jpg',
                                   fit: BoxFit.cover,
@@ -120,65 +121,7 @@ class HomeScreen extends StatelessWidget {
                                 icon: kRatingIcon,
                               ),
                               FeaturedServices(
-                                name: 'Aluminium',
-                                image: Image.asset(
-                                  'images/city_background.jpg',
-                                  fit: BoxFit.cover,
-                                ),
-                                icon: kRatingIcon,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(
-                              horizontal: 10.0, vertical: 10.0),
-                          height: 180.0,
-                          child: ListView(
-                            scrollDirection: Axis.horizontal,
-                            children: <Widget>[
-                              FeaturedServices(
-                                name: 'Ac Installation',
-                                image: Image.asset(
-                                  'images/city_background.jpg',
-                                  fit: BoxFit.cover,
-                                ),
-                                icon: kRatingIcon,
-                              ),
-                              FeaturedServices(
-                                name: 'Wooden Doors',
-                                image: Image.asset(
-                                  'images/city_background.jpg',
-                                  fit: BoxFit.cover,
-                                ),
-                                icon: kRatingIcon,
-                              ),
-                              FeaturedServices(
-                                name: 'Glass Windows',
-                                image: Image.asset(
-                                  'images/city_background.jpg',
-                                  fit: BoxFit.cover,
-                                ),
-                                icon: kRatingIcon,
-                              ),
-                              FeaturedServices(
-                                name: 'Room Cleansing',
-                                image: Image.asset(
-                                  'images/city_background.jpg',
-                                  fit: BoxFit.cover,
-                                ),
-                                icon: kRatingIcon,
-                              ),
-                              FeaturedServices(
-                                name: 'Shifting',
-                                image: Image.asset(
-                                  'images/city_background.jpg',
-                                  fit: BoxFit.cover,
-                                ),
-                                icon: kRatingIcon,
-                              ),
-                              FeaturedServices(
-                                name: 'Kitchen Leakage',
+                                name: "text33".tr().toString(),
                                 image: Image.asset(
                                   'images/city_background.jpg',
                                   fit: BoxFit.cover,
@@ -196,7 +139,7 @@ class HomeScreen extends StatelessWidget {
                             scrollDirection: Axis.horizontal,
                             children: <Widget>[
                               FeaturedServices(
-                                name: 'Professionals',
+                                name: "text34".tr().toString(),
                                 image: Image.asset(
                                   'images/city_background.jpg',
                                   fit: BoxFit.cover,
@@ -204,7 +147,7 @@ class HomeScreen extends StatelessWidget {
                                 icon: kRatingIcon,
                               ),
                               FeaturedServices(
-                                name: 'Professionals',
+                                name: "text35".tr().toString(),
                                 image: Image.asset(
                                   'images/city_background.jpg',
                                   fit: BoxFit.cover,
@@ -212,7 +155,7 @@ class HomeScreen extends StatelessWidget {
                                 icon: kRatingIcon,
                               ),
                               FeaturedServices(
-                                name: 'Professionals',
+                                name: "text36".tr().toString(),
                                 image: Image.asset(
                                   'images/city_background.jpg',
                                   fit: BoxFit.cover,
@@ -220,7 +163,7 @@ class HomeScreen extends StatelessWidget {
                                 icon: kRatingIcon,
                               ),
                               FeaturedServices(
-                                name: 'Professionals',
+                                name: "text37".tr().toString(),
                                 image: Image.asset(
                                   'images/city_background.jpg',
                                   fit: BoxFit.cover,
@@ -228,7 +171,7 @@ class HomeScreen extends StatelessWidget {
                                 icon: kRatingIcon,
                               ),
                               FeaturedServices(
-                                name: 'Professionals',
+                                name: "text38".tr().toString(),
                                 image: Image.asset(
                                   'images/city_background.jpg',
                                   fit: BoxFit.cover,
@@ -236,7 +179,65 @@ class HomeScreen extends StatelessWidget {
                                 icon: kRatingIcon,
                               ),
                               FeaturedServices(
-                                name: 'Professionals',
+                                name: "text39".tr().toString(),
+                                image: Image.asset(
+                                  'images/city_background.jpg',
+                                  fit: BoxFit.cover,
+                                ),
+                                icon: kRatingIcon,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 10.0, vertical: 10.0),
+                          height: 180.0,
+                          child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            children: <Widget>[
+                              FeaturedServices(
+                                name: "text4".tr().toString(),
+                                image: Image.asset(
+                                  'images/city_background.jpg',
+                                  fit: BoxFit.cover,
+                                ),
+                                icon: kRatingIcon,
+                              ),
+                              FeaturedServices(
+                                name: "text4".tr().toString(),
+                                image: Image.asset(
+                                  'images/city_background.jpg',
+                                  fit: BoxFit.cover,
+                                ),
+                                icon: kRatingIcon,
+                              ),
+                              FeaturedServices(
+                                name: "text4".tr().toString(),
+                                image: Image.asset(
+                                  'images/city_background.jpg',
+                                  fit: BoxFit.cover,
+                                ),
+                                icon: kRatingIcon,
+                              ),
+                              FeaturedServices(
+                                name: "text4".tr().toString(),
+                                image: Image.asset(
+                                  'images/city_background.jpg',
+                                  fit: BoxFit.cover,
+                                ),
+                                icon: kRatingIcon,
+                              ),
+                              FeaturedServices(
+                                name: "text4".tr().toString(),
+                                image: Image.asset(
+                                  'images/city_background.jpg',
+                                  fit: BoxFit.cover,
+                                ),
+                                icon: kRatingIcon,
+                              ),
+                              FeaturedServices(
+                                name: "text4".tr().toString(),
                                 image: Image.asset(
                                   'images/city_background.jpg',
                                   fit: BoxFit.cover,

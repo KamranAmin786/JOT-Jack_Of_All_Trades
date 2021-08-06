@@ -1,8 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:fyp/AppColors.dart';
-import 'package:fyp/AppLocalizations .dart';
 import 'package:fyp/screens/HomeOwner/Interactive/bottom_navigator.dart';
 import 'package:fyp/screens/HomeOwner/Interactive/home_screen.dart';
 import 'package:fyp/screens/HomeOwner/Interactive/profile_screen.dart';
@@ -13,10 +12,22 @@ import 'package:fyp/screens/HomeOwner/Interactive/wallet_screen.dart';
 import 'package:fyp/screens/HomeOwner/SignIn/homeowner_signin_screen.dart';
 import 'package:fyp/welcome_screen.dart';
 
-void main() async {
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(FYP());
+  runApp(
+    EasyLocalization(
+      supportedLocales: [
+        Locale('en', 'US'),
+        Locale('ur', 'PK'),
+      ],
+      path: 'assets/translations',
+      saveLocale: true,
+      fallbackLocale: Locale('en', 'US'),
+      child: FYP(),
+    ),
+  );
 }
 
 class FYP extends StatelessWidget {
@@ -24,28 +35,9 @@ class FYP extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      supportedLocales: [
-        Locale( 'en' , 'US' ),
-        Locale( 'ur' , 'PK' ),
-      ],
-
-      localizationsDelegates: [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-
-      localeResolutionCallback: (locale, supportedLocales) {
-        for (var supportedLocaleLanguage in supportedLocales) {
-          if (supportedLocaleLanguage.languageCode == locale.languageCode &&
-              supportedLocaleLanguage.countryCode == locale.countryCode) {
-            return supportedLocaleLanguage;
-          }
-        }
-
-        // If device not support with locale to get language code then default get first on from the list
-        return supportedLocales.last;
-      },
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       routes: {
         ProfileScreen.id: (context) => ProfileScreen(),
         TaskDetailsScreen.id: (context) => TaskDetailsScreen(),

@@ -1,9 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fyp/screens/HomeOwner/Registration/HomeownerRegistrationPage.dart';
-import 'package:fyp/screens/HomeOwner/Registration/ProfessionalRegistrationPage.dart';
+import 'package:fyp/Professional/ProfessionalHomeScreen.dart';
+import 'package:fyp/screens/HomeOwner/Interactive/bottom_navigator.dart';
 import 'package:fyp/screens/HomeOwner/Registration/RegistrationPage.dart';
 import 'package:fyp/screens/HomeOwner/SignIn/homeowner_signin_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class RegistrationMethod extends StatefulWidget {
   final String role;
@@ -13,6 +16,8 @@ class RegistrationMethod extends StatefulWidget {
 }
 
 class _RegistrationMethodState extends State<RegistrationMethod> {
+  bool isLoggedIn = false;
+  String name;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,7 +80,7 @@ class _RegistrationMethodState extends State<RegistrationMethod> {
                   height: 40.0,
                 ),
                 Text(
-                  'find your fit',
+                  "text5".tr().toString(),
                   style: TextStyle(
                       color: Color(0xFF504473),
                       fontSize: 28.0,
@@ -86,7 +91,7 @@ class _RegistrationMethodState extends State<RegistrationMethod> {
                   height: 5.0,
                 ),
                 Text(
-                  'handyman service',
+                  "text6".tr().toString(),
                   style: TextStyle(
                       color: Color(0xFF504473),
                       fontSize: 28.0,
@@ -97,7 +102,7 @@ class _RegistrationMethodState extends State<RegistrationMethod> {
                   height: 20.0,
                 ),
                 Text(
-                  'High-quality workmanship at great prices',
+                  "text7".tr().toString(),
                   style: TextStyle(
                     color: Color(0xFF736A8F),
                     fontSize: 15.0,
@@ -157,7 +162,7 @@ class _RegistrationMethodState extends State<RegistrationMethod> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        'Already have an account ! ',
+                        "text8".tr().toString(),
                         style: TextStyle(fontFamily: 'Montserrat'),
                       ),
                       FlatButton(
@@ -165,7 +170,7 @@ class _RegistrationMethodState extends State<RegistrationMethod> {
                         height: 0.0,
                         padding: EdgeInsets.all(0.0),
                         child: Text(
-                          'Sign In',
+                          "text9".tr().toString(),
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Montserrat'),
@@ -194,8 +199,7 @@ class _RegistrationMethodState extends State<RegistrationMethod> {
                               ? Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          RegistrationPage(
+                                      builder: (context) => RegistrationPage(
                                             role: widget.role,
                                           )))
                               : Navigator.push(
@@ -208,10 +212,11 @@ class _RegistrationMethodState extends State<RegistrationMethod> {
                         child: Container(
                           child: Center(
                             child: Text(
-                              'Sign up with Number',
+                              "text10".tr().toString(),
                               style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
@@ -221,15 +226,16 @@ class _RegistrationMethodState extends State<RegistrationMethod> {
                       // sign up with Google
                       InkWell(
                         onTap: () {
-                          //lets go
+                          _googleSignIn();
                         },
                         child: Container(
                           child: Center(
                             child: Text(
-                              'Sign up with Google',
+                              "text11".tr().toString(),
                               style: TextStyle(
-                                  color: Colors.black87,
-                                  fontFamily: 'Montserrat'),
+                                  color: Colors.black,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                           height: 55.0,
@@ -251,5 +257,39 @@ class _RegistrationMethodState extends State<RegistrationMethod> {
         ),
       ),
     );
+  }
+
+  _googleSignIn() async {
+    final googleSignIn = GoogleSignIn();
+    final signInAccount = await googleSignIn.signIn();
+
+    final googleAccountAuthentication = await signInAccount.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+        accessToken: googleAccountAuthentication.accessToken,
+        idToken: googleAccountAuthentication.idToken);
+
+    await FirebaseAuth.instance.signInWithCredential(credential);
+
+    if (FirebaseAuth.instance.currentUser != null) {
+      print('Google Authentication Successful');
+      print('${FirebaseAuth.instance.currentUser.displayName} signed in.');
+      print('${FirebaseAuth.instance.currentUser.phoneNumber} phone number.');
+      print('${FirebaseAuth.instance.currentUser.email} phone number.');
+      widget.role == 'Homeowner'
+          ? Navigator.push(context,
+              MaterialPageRoute(builder: (context) => BottomNavigator()))
+          : Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ProfessionalHomeScreen()));
+
+      setState(() {
+        isLoggedIn = true;
+        name = FirebaseAuth.instance.currentUser.displayName;
+      });
+    } else {
+      print('Unable to sign in');
+    }
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fyp/components/services_list.dart';
 import 'package:fyp/constants.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ServiceScreen extends StatefulWidget {
   ServiceScreen({this.image, this.name});
@@ -41,42 +42,42 @@ class _ServiceScreenState extends State<ServiceScreen> {
                     children: <Widget>[
                       kDivider,
                       ServicesList(
-                        name: 'LCD / LED TV Installation',
+                        name: "text40".tr().toString(),
                         icon: Icons.tv,
                       ),
                       kDivider,
                       ServicesList(
-                        name: 'LCD / LED TV Installation',
+                        name: "text40".tr().toString(),
                         icon: Icons.tv,
                       ),
                       kDivider,
                       ServicesList(
-                        name: 'LCD / LED TV Installation',
+                        name: "text40".tr().toString(),
                         icon: Icons.tv,
                       ),
                       kDivider,
                       ServicesList(
-                        name: 'LCD / LED TV Installation',
+                        name: "text40".tr().toString(),
                         icon: Icons.tv,
                       ),
                       kDivider,
                       ServicesList(
-                        name: 'LCD / LED TV Installation',
+                        name: "text40".tr().toString(),
                         icon: Icons.tv,
                       ),
                       kDivider,
                       ServicesList(
-                        name: 'LCD / LED TV Installation',
+                        name: "text40".tr().toString(),
                         icon: Icons.tv,
                       ),
                       kDivider,
                       ServicesList(
-                        name: 'LCD / LED TV Installation',
+                        name: "text40".tr().toString(),
                         icon: Icons.tv,
                       ),
                       kDivider,
                       ServicesList(
-                        name: 'LCD / LED TV Installation',
+                        name: "text40".tr().toString(),
                         icon: Icons.tv,
                       ),
                     ],

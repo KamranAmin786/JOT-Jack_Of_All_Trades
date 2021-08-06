@@ -9,8 +9,8 @@ import 'package:fyp/components/InputField.dart';
 import 'package:fyp/constants.dart';
 import 'package:fyp/screens/HomeOwner/Registration/HomeownerRegistrationPage.dart';
 import 'package:fyp/screens/HomeOwner/Registration/ProfessionalRegistrationPage.dart';
-import 'package:fyp/services/auth_services.dart';
 import '../SignIn/homeowner_signin_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class RegistrationPage extends StatefulWidget {
   final String role;
@@ -99,7 +99,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           height: 40.0,
                         ),
                         Text(
-                          'enter your',
+                          "text12".tr().toString(),
                           style: TextStyle(
                               color: colorWhite,
                               fontSize: 28.0,
@@ -110,7 +110,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           height: 8.0,
                         ),
                         Text(
-                          'mobile number',
+                          "text13".tr().toString(),
                           style: TextStyle(
                               color: colorWhite,
                               fontSize: 28.0,
@@ -121,7 +121,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           height: 30.0,
                         ),
                         Text(
-                          'You will receive a 4 digit code to verify next',
+                          "text14".tr().toString(),
                           style: TextStyle(
                             color: colorWhite,
                             fontSize: 15.0,
@@ -140,7 +140,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 InputField(
-                                  text: 'Enter your mobile number',
+                                  text: "text15".tr().toString(),
                                   icon: Icons.phone,
                                   controller: numberController,
                                   type: TextInputType.phone,
@@ -151,18 +151,20 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                     });
                                   },
                                 ),
-                             codeSent ?  InputField(
-                                  text: 'Enter OTP',
-                                  icon: FontAwesomeIcons.key,
-                                  controller: otpController,
-                                  type: TextInputType.phone,
-                                  validator: validateMobile,
-                                  onPressed: (val) {
-                                    setState(() {
-                                      this.smsCode = val;
-                                    });
-                                  },
-                                ): Container(),
+                                codeSent
+                                    ? InputField(
+                                        text: 'Enter OTP',
+                                        icon: FontAwesomeIcons.key,
+                                        controller: otpController,
+                                        type: TextInputType.phone,
+                                        validator: validateMobile,
+                                        onPressed: (val) {
+                                          setState(() {
+                                            this.smsCode = val;
+                                          });
+                                        },
+                                      )
+                                    : Container(),
                                 SizedBox(
                                   height: 30.0,
                                 ),
@@ -171,52 +173,56 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 ),
                                 Padding(
                                   padding:
-                                  EdgeInsets.symmetric(horizontal: 40.0),
+                                      EdgeInsets.symmetric(horizontal: 40.0),
                                   child: SizedBox(
                                     height: 55.0,
                                     width: 250.0,
                                     child: RaisedButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                          BorderRadius.circular(25.0)),
-                                      color: Colors.white,
-                                      onPressed: () {
-                                   //    codeSent ? AuthService().signInWithOTP(smsCode, verificationId) : verifyPhone(phoneNumber);
-                                        widget.role == 'Homeowner'
-                                            ? Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    HomeownerRegistrationPage(
-                                                      role: widget.role,
-                                                      phoneNumber: phoneNumber,
-                                                    )))
-                                            : Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) => ProfessionalRegistrationPage(
-                                                  role: widget.role,
-                                                  phoneNumber: phoneNumber,
-                                                )));
-                                      },
-                                      child : codeSent ? Text(
-                                        'Sign Up',
-                                        style: TextStyle(
-                                          fontSize: 18.0,
-                                          color: Color(0xFF5145C1),
-                                          fontFamily: 'Montserrat',
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ): Text(
-                                        'Login',
-                                        style: TextStyle(
-                                          fontSize: 18.0,
-                                          color: Color(0xFF5145C1),
-                                          fontFamily: 'Montserrat',
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      )
-                                    ),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(25.0)),
+                                        color: Colors.white,
+                                        onPressed: () {
+                                          //    codeSent ? AuthService().signInWithOTP(smsCode, verificationId) : verifyPhone(phoneNumber);
+                                          widget.role == 'Homeowner'
+                                              ? Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          HomeownerRegistrationPage(
+                                                            role: widget.role,
+                                                            phoneNumber:
+                                                                phoneNumber,
+                                                          )))
+                                              : Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          ProfessionalRegistrationPage(
+                                                            role: widget.role,
+                                                            phoneNumber:
+                                                                phoneNumber,
+                                                          )));
+                                        },
+                                        child: codeSent
+                                            ? Text(
+                                                'Sign Up',
+                                                style: TextStyle(
+                                                  fontSize: 18.0,
+                                                  color: Color(0xFF5145C1),
+                                                  fontFamily: 'Montserrat',
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              )
+                                            : Text(
+                                                "text16".tr().toString(),
+                                                style: TextStyle(
+                                                  fontSize: 18.0,
+                                                  color: Color(0xFF5145C1),
+                                                  fontFamily: 'Montserrat',
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              )),
                                   ),
                                 ),
                               ],
@@ -227,7 +233,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           height: 30.0,
                         ),
                         Text(
-                          'or sign in through',
+                          "text17".tr().toString(),
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 15.0,
@@ -240,7 +246,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-
                               SignInButtonBuilder(
                                 backgroundColor: Colors.red,
                                 onPressed: () {},
@@ -248,7 +253,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 text: 'Google',
                                 icon: FontAwesomeIcons.google,
                               ),
-
                             ],
                           ),
                         ),
@@ -262,7 +266,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: <Widget>[
                               Text(
-                                'Already have an account ! ',
+                                "text8".tr().toString(),
                                 style: TextStyle(
                                     fontFamily: 'Montserrat',
                                     color: Colors.white),
@@ -273,7 +277,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                       context, HomeownerSignIn.id);
                                 },
                                 child: Text(
-                                  'Sign In',
+                                  "text9".tr().toString(),
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'Montserrat',
@@ -291,14 +295,15 @@ class _RegistrationPageState extends State<RegistrationPage> {
               ),
               isLoading
                   ? Container(
-                height: MediaQuery.of(context).size.height,
-                width: double.infinity,
-                color: Colors.black38,
-                child: Center(
-                    child: CircularProgressIndicator(
-                      valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
-                    )),
-              )
+                      height: MediaQuery.of(context).size.height,
+                      width: double.infinity,
+                      color: Colors.black38,
+                      child: Center(
+                          child: CircularProgressIndicator(
+                        valueColor:
+                            new AlwaysStoppedAnimation<Color>(Colors.white),
+                      )),
+                    )
                   : Container(),
             ],
           ),
@@ -310,11 +315,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
   Future<void> verifyPhone(phoneNumber) async {
     final PhoneVerificationCompleted verificationCompleted =
         (AuthCredential authResult) {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => ProfessionalHomeScreen(
-              )));
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => ProfessionalHomeScreen()));
     };
 
     final PhoneVerificationFailed verificationFailed =
@@ -327,7 +329,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
       setState(() {
         this.codeSent = true;
       });
-
     };
     final PhoneCodeAutoRetrievalTimeout codeAutoRetrievalTimeout =
         (String verId) {
@@ -343,7 +344,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
         codeAutoRetrievalTimeout: codeAutoRetrievalTimeout);
   }
 }
-
 
 // widget.role == 'Professional' ?
 // Navigator.push(

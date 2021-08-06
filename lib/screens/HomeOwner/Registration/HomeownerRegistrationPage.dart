@@ -5,6 +5,7 @@ import 'package:fyp/components/InputField.dart';
 import 'package:fyp/widget/PrimaryButton.dart';
 import 'package:fyp/widget/RadioButton.dart';
 import 'package:intl/intl.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../Interactive/bottom_navigator.dart';
 
@@ -12,7 +13,7 @@ class HomeownerRegistrationPage extends StatefulWidget {
   final String role;
   final String phoneNumber;
 
-  HomeownerRegistrationPage({this.role,this.phoneNumber});
+  HomeownerRegistrationPage({this.role, this.phoneNumber});
 
   @override
   _HomeownerRegistrationPageState createState() =>
@@ -29,7 +30,7 @@ class _HomeownerRegistrationPageState extends State<HomeownerRegistrationPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    phoneNUmber.text=widget.phoneNumber;
+    phoneNUmber.text = widget.phoneNumber;
   }
 
   @override
@@ -50,7 +51,7 @@ class _HomeownerRegistrationPageState extends State<HomeownerRegistrationPage> {
                 children: <Widget>[
                   Center(
                     child: Text(
-                      'Jack',
+                      "hello".tr().toString(),
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 28.0,
@@ -63,7 +64,7 @@ class _HomeownerRegistrationPageState extends State<HomeownerRegistrationPage> {
                   ),
                   Center(
                     child: Text(
-                      'of all trades',
+                      "text1".tr().toString(),
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 28.0,
@@ -76,7 +77,7 @@ class _HomeownerRegistrationPageState extends State<HomeownerRegistrationPage> {
                   ),
                   Center(
                     child: Text(
-                      'Please enter your information',
+                      "text18".tr().toString(),
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 14.0,
@@ -88,21 +89,21 @@ class _HomeownerRegistrationPageState extends State<HomeownerRegistrationPage> {
                     height: 50.0,
                   ),
                   InputField(
-                    text: 'Enter your name',
+                    text: "text19".tr().toString(),
                     icon: Icons.person,
                   ),
                   SizedBox(
                     height: 30.0,
                   ),
                   InputField(
-                    text: 'Enter your email',
+                    text: "text20".tr().toString(),
                     icon: Icons.email,
                   ),
                   SizedBox(
                     height: 30.0,
                   ),
                   InputField(
-                    text: 'Enter your number',
+                    text: "text21".tr().toString(),
                     icon: Icons.phone,
                     controller: phoneNUmber,
                     enabled: false,
@@ -111,7 +112,7 @@ class _HomeownerRegistrationPageState extends State<HomeownerRegistrationPage> {
                     height: 30.0,
                   ),
                   Padding(
-                    padding:  EdgeInsets.symmetric(horizontal: 15.0),
+                    padding: EdgeInsets.symmetric(horizontal: 24.0),
                     child: TextFormField(
                       keyboardType: TextInputType.datetime,
                       style: TextStyle(
@@ -128,19 +129,19 @@ class _HomeownerRegistrationPageState extends State<HomeownerRegistrationPage> {
                           color: Colors.white,
                           size: 25.0,
                         ),
-                      focusColor: Colors.white,
-                      hintText: 'Enter your date of birth',
-                      hintStyle: TextStyle(
-                        color: colorGrey,
-                        fontSize: 14,
-                        fontFamily: 'Montserrat',
+                        focusColor: Colors.white,
+                        hintText: "text22".tr().toString(),
+                        hintStyle: TextStyle(
+                          color: colorGrey,
+                          fontSize: 14,
+                          fontFamily: 'Montserrat',
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: colorWhite)),
+                        border: UnderlineInputBorder(
+                            borderSide: BorderSide(color: colorGrey)),
+                        contentPadding: EdgeInsets.only(top: 15.0),
                       ),
-                      focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: colorWhite)),
-                      border: UnderlineInputBorder(
-                          borderSide: BorderSide(color: colorGrey)),
-                      contentPadding: EdgeInsets.only(top: 15.0),
-                    ),
                       onTap: () async {
                         DateTime date = DateTime(1900);
                         FocusScope.of(context).requestFocus(new FocusNode());
@@ -154,10 +155,7 @@ class _HomeownerRegistrationPageState extends State<HomeownerRegistrationPage> {
                         DateTime dt = DateTime.parse(dateFormatter);
                         var formatter = new DateFormat('dd-MMMM-yyyy');
                         birthDateController = formatter.format(dt);
-                        dateCtl.text  =birthDateController;
-
-
-
+                        dateCtl.text = birthDateController;
                       },
                     ),
                   ),
@@ -174,7 +172,7 @@ class _HomeownerRegistrationPageState extends State<HomeownerRegistrationPage> {
                             height: 10.0,
                           ),
                           Text(
-                            'GENDER',
+                            "text23".tr().toString(),
                             style: TextStyle(
                                 color: Colors.white,
                                 letterSpacing: 1,
@@ -194,17 +192,16 @@ class _HomeownerRegistrationPageState extends State<HomeownerRegistrationPage> {
                     height: 40,
                   ),
                   PrimaryButton(
-                    text: 'Sign Up',
+                    text: "text24".tr().toString(),
                     textColor: colorPrimary,
                     gradient: colorWhite,
                     endGradient: colorWhite,
                     width: 220.0,
-                    onPressed: (){
+                    onPressed: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => BottomNavigator(
-                              )));
+                              builder: (context) => BottomNavigator()));
                     },
                   ),
                 ],
