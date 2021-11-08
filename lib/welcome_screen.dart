@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fyp/AppColors.dart';
-import 'package:fyp/screens/HomeOwner/Registration/RegistrationMethod.dart';
 import 'package:easy_localization/easy_localization.dart';
+
+import 'navigator.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override

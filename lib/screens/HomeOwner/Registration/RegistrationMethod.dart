@@ -1,11 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fyp/Professional/ProfessionalHomeScreen.dart';
-import 'package:fyp/screens/HomeOwner/Interactive/bottom_navigator.dart';
-import 'package:fyp/screens/HomeOwner/Registration/RegistrationPage.dart';
-import 'package:fyp/screens/HomeOwner/SignIn/homeowner_signin_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:fyp/navigator.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class RegistrationMethod extends StatefulWidget {
@@ -176,7 +173,7 @@ class _RegistrationMethodState extends State<RegistrationMethod> {
                               fontFamily: 'Montserrat'),
                         ),
                         onPressed: () {
-                          Navigator.pushNamed(context, HomeownerSignIn.id);
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => HomeownerSignIn()));
                         },
                       ),
                     ],

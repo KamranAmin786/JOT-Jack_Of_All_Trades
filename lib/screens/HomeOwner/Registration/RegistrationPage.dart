@@ -273,8 +273,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  Navigator.pushNamed(
-                                      context, HomeownerSignIn.id);
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => HomeownerSignIn()));
                                 },
                                 child: Text(
                                   "text9".tr().toString(),

@@ -6,7 +6,6 @@ import 'package:fyp/screens/HomeOwner/Interactive/bottom_navigator.dart';
 
 class HomeownerSignIn extends StatelessWidget {
   final signIn = GlobalKey();
-  static const String id = 'homeowner_signin_screen';
   @override
   Widget build(BuildContext context) {
     String email;
