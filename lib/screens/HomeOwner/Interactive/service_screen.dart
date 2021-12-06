@@ -1,10 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp/components/services_list.dart';
 import 'package:fyp/constants.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 class ServiceScreen extends StatefulWidget {
   ServiceScreen({this.image, this.name});
+
   final Image image;
   final String name;
   static const String id = 'service_screen';
@@ -14,6 +15,9 @@ class ServiceScreen extends StatefulWidget {
 }
 
 class _ServiceScreenState extends State<ServiceScreen> {
+  final firebase = FirebaseFirestore.instance;
+  String subServiceName;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,51 +42,84 @@ class _ServiceScreenState extends State<ServiceScreen> {
                   ),
                 ),
                 Expanded(
-                  child: ListView(
-                    children: <Widget>[
-                      kDivider,
-                      ServicesList(
-                        name: "text40".tr().toString(),
-                        icon: Icons.tv,
-                      ),
-                      kDivider,
-                      ServicesList(
-                        name: "text40".tr().toString(),
-                        icon: Icons.tv,
-                      ),
-                      kDivider,
-                      ServicesList(
-                        name: "text40".tr().toString(),
-                        icon: Icons.tv,
-                      ),
-                      kDivider,
-                      ServicesList(
-                        name: "text40".tr().toString(),
-                        icon: Icons.tv,
-                      ),
-                      kDivider,
-                      ServicesList(
-                        name: "text40".tr().toString(),
-                        icon: Icons.tv,
-                      ),
-                      kDivider,
-                      ServicesList(
-                        name: "text40".tr().toString(),
-                        icon: Icons.tv,
-                      ),
-                      kDivider,
-                      ServicesList(
-                        name: "text40".tr().toString(),
-                        icon: Icons.tv,
-                      ),
-                      kDivider,
-                      ServicesList(
-                        name: "text40".tr().toString(),
-                        icon: Icons.tv,
-                      ),
-                    ],
-                  ),
+                  child: FutureBuilder<QuerySnapshot>(
+                    future: firebase.collection('MainServices').doc('${widget.name}').collection('SubServices').get(),
+                      builder: (context, snapshots) {
+                        if (snapshots.hasData) {
+                          final List<DocumentSnapshot> data =
+                              snapshots.data.docs;
+                          return ListView(
+                            children: data.map((doc) {
+                              try {
+                                subServiceName =
+                                    doc.get(FieldPath(['name']));
+                              } on StateError catch (e) {
+                                subServiceName = e.message;
+                              }
+                              return  Column(
+                                children: [
+                                  ServicesList(
+                                    name: subServiceName,
+                                    icon: Icons.tv,
+                                  ),
+                                  kDivider,
+                                ],
+                              );
+                            }).toList(),
+                          );
+                        } else {
+                          return Center(
+                            child: Text('No Data Found'),
+                          );
+                        }
+                      }),
                 ),
+                // Expanded(
+                //   child: ListView(
+                //     children: <Widget>[
+                //       kDivider,
+                //       ServicesList(
+                //         name: "text40".tr().toString(),
+                //         icon: Icons.tv,
+                //       ),
+                //       kDivider,
+                //       ServicesList(
+                //         name: "text40".tr().toString(),
+                //         icon: Icons.tv,
+                //       ),
+                //       kDivider,
+                //       ServicesList(
+                //         name: "text40".tr().toString(),
+                //         icon: Icons.tv,
+                //       ),
+                //       kDivider,
+                //       ServicesList(
+                //         name: "text40".tr().toString(),
+                //         icon: Icons.tv,
+                //       ),
+                //       kDivider,
+                //       ServicesList(
+                //         name: "text40".tr().toString(),
+                //         icon: Icons.tv,
+                //       ),
+                //       kDivider,
+                //       ServicesList(
+                //         name: "text40".tr().toString(),
+                //         icon: Icons.tv,
+                //       ),
+                //       kDivider,
+                //       ServicesList(
+                //         name: "text40".tr().toString(),
+                //         icon: Icons.tv,
+                //       ),
+                //       kDivider,
+                //       ServicesList(
+                //         name: "text40".tr().toString(),
+                //         icon: Icons.tv,
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ],
             ),
           ),

@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
@@ -7,8 +8,8 @@ import 'package:fyp/AppColors.dart';
 import 'package:fyp/Professional/ProfessionalHomeScreen.dart';
 import 'package:fyp/components/InputField.dart';
 import 'package:fyp/constants.dart';
-import 'package:fyp/screens/HomeOwner/Registration/HomeownerRegistrationPage.dart';
-import 'package:fyp/screens/HomeOwner/Registration/ProfessionalRegistrationPage.dart';
+import 'package:fyp/screens/HomeOwner/Registration/HomeownerDataPage.dart';
+import 'package:fyp/screens/HomeOwner/Registration/ProfessionalDataPage.dart';
 import '../SignIn/homeowner_signin_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -23,12 +24,13 @@ class RegistrationPage extends StatefulWidget {
 
 class _RegistrationPageState extends State<RegistrationPage> {
   bool isLoading = false;
-
+  FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   TextEditingController numberController = TextEditingController();
   TextEditingController otpController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   String phoneNumber, verificationId, smsCode;
   bool codeSent = false;
+  String userUid = '';
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +101,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           height: 40.0,
                         ),
                         Text(
-                          "text12".tr().toString(),
+                          "text12".tr().toString(),  // enter your
                           style: TextStyle(
                               color: colorWhite,
                               fontSize: 28.0,
@@ -110,7 +112,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           height: 8.0,
                         ),
                         Text(
-                          "text13".tr().toString(),
+                          "text13".tr().toString(), //mobile number
                           style: TextStyle(
                               color: colorWhite,
                               fontSize: 28.0,
@@ -121,7 +123,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           height: 30.0,
                         ),
                         Text(
-                          "text14".tr().toString(),
+                          "text14".tr().toString(), // You will receive a 4 digit code to verify next
                           style: TextStyle(
                             color: colorWhite,
                             fontSize: 15.0,
@@ -140,7 +142,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 InputField(
-                                  text: "text15".tr().toString(),
+                                  text: "text15".tr().toString(),  //Enter your mobile number
                                   icon: Icons.phone,
                                   controller: numberController,
                                   type: TextInputType.phone,
@@ -182,23 +184,28 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                             borderRadius:
                                                 BorderRadius.circular(25.0)),
                                         color: Colors.white,
-                                        onPressed: () {
+                                        onPressed: () async {
+                                          // var user = _firebaseAuth.currentUser;
+                                          setState(() {
+                                            userUid = 'kamran';
+                                          });
                                           //    codeSent ? AuthService().signInWithOTP(smsCode, verificationId) : verifyPhone(phoneNumber);
                                           widget.role == 'Homeowner'
                                               ? Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: (context) =>
-                                                          HomeownerRegistrationPage(
+                                                          HomeownerDataPage(
                                                             role: widget.role,
                                                             phoneNumber:
                                                                 phoneNumber,
+                                                            userUid: userUid,
                                                           )))
                                               : Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: (context) =>
-                                                          ProfessionalRegistrationPage(
+                                                          ProfessionalDataPage(
                                                             role: widget.role,
                                                             phoneNumber:
                                                                 phoneNumber,
@@ -215,7 +222,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                                 ),
                                               )
                                             : Text(
-                                                "text16".tr().toString(),
+                                                "text16".tr().toString(),  // Login
                                                 style: TextStyle(
                                                   fontSize: 18.0,
                                                   color: Color(0xFF5145C1),
@@ -233,7 +240,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           height: 30.0,
                         ),
                         Text(
-                          "text17".tr().toString(),
+                          "text17".tr().toString(), // or sign in through
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 15.0,

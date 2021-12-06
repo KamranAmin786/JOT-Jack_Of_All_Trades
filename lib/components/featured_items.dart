@@ -32,6 +32,7 @@ class FeaturedServices extends StatelessWidget {
                     fontFamily: 'Montserrat',
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
+                    fontSize: 12.0,
                   ),
                 ),
                 subtitle: Row(

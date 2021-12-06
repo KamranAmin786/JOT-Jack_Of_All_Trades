@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fyp/AppColors.dart';
@@ -11,28 +10,25 @@ import 'package:fyp/screens/HomeOwner/Registration/ProfesssionalAddFrontCnicPage
 import 'package:fyp/widget/PrimaryButton.dart';
 import 'package:intl/intl.dart';
 
-import '../Interactive/bottom_navigator.dart';
 
-class ProfessionalRegistrationPage extends StatefulWidget {
+class ProfessionalDataPage extends StatefulWidget {
   final String role;
   final String phoneNumber;
 
-  ProfessionalRegistrationPage({this.role, this.phoneNumber});
+  ProfessionalDataPage({ this.role,  this.phoneNumber});
 
   @override
-  _ProfessionalRegistrationPageState createState() =>
-      _ProfessionalRegistrationPageState();
+  _ProfessionalDataPageState createState() =>
+      _ProfessionalDataPageState();
 }
 
-class _ProfessionalRegistrationPageState
-    extends State<ProfessionalRegistrationPage> {
+class _ProfessionalDataPageState
+    extends State<ProfessionalDataPage> {
   TextEditingController dateCtl = TextEditingController();
   TextEditingController phoneNUmber = TextEditingController();
   List<String> selectedSkills = [];
   String skillController;
-
   String birthDateController;
-
   File cnicBack;
   File cnicFront;
 
@@ -152,7 +148,7 @@ class _ProfessionalRegistrationPageState
                               initialDate: DateTime.now(),
                               firstDate: DateTime(1900),
                               lastDate: DateTime(2100));
-                          String dateFormatter = date.toIso8601String();
+                          String dateFormatter = date?.toIso8601String();
                           DateTime dt = DateTime.parse(dateFormatter);
                           var formatter = new DateFormat('dd-MMMM-yyyy');
                           birthDateController = formatter.format(dt);

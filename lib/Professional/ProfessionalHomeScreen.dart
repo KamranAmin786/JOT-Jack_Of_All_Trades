@@ -346,15 +346,15 @@ class _ProfessionalHomeScreenState extends State<ProfessionalHomeScreen> {
                                             "RS.72",
                                             style: TextStyle(
                                                 color: colorBlack,
-                                                fontSize: 18.0,
+                                                fontSize: 12.0,
                                                 fontFamily: 'Montserrat',
                                                 fontWeight: FontWeight.w900),
                                           ),
                                           Text(
-                                            'RS.0',
+                                            ' RS.0',
                                             style: TextStyle(
                                                 color: colorBlack,
-                                                fontSize: 18.0,
+                                                fontSize: 12.0,
                                                 fontFamily: 'Montserrat',
                                                 fontWeight: FontWeight.w900),
                                           ),
@@ -410,15 +410,15 @@ class _ProfessionalHomeScreenState extends State<ProfessionalHomeScreen> {
                                             "RS.67.50",
                                             style: TextStyle(
                                                 color: colorBlack,
-                                                fontSize: 18.0,
+                                                fontSize: 12.0,
                                                 fontFamily: 'Montserrat',
                                                 fontWeight: FontWeight.w900),
                                           ),
                                           Text(
-                                            '0 (RS.0)',
+                                            ' 0 (RS.0)',
                                             style: TextStyle(
                                                 color: colorBlack,
-                                                fontSize: 18.0,
+                                                fontSize: 12.0,
                                                 fontFamily: 'Montserrat',
                                                 fontWeight: FontWeight.w900),
                                           ),
@@ -474,15 +474,15 @@ class _ProfessionalHomeScreenState extends State<ProfessionalHomeScreen> {
                                             "RS.1012",
                                             style: TextStyle(
                                                 color: colorBlack,
-                                                fontSize: 18.0,
+                                                fontSize: 12.0,
                                                 fontFamily: 'Montserrat',
                                                 fontWeight: FontWeight.w900),
                                           ),
                                           Text(
-                                            '0 (RS.0)',
+                                            ' 0 (RS.0)',
                                             style: TextStyle(
                                                 color: colorBlack,
-                                                fontSize: 18.0,
+                                                fontSize: 12.0,
                                                 fontFamily: 'Montserrat',
                                                 fontWeight: FontWeight.w900),
                                           ),

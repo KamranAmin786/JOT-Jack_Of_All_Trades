@@ -16,9 +16,12 @@ class ServicesList extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Icon(icon),
-            Text(
-              name,
-              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+            SizedBox(width: 10.0,),
+            Expanded(
+              child: Text(
+                name,
+                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold,),
+              ),
             ),
             Opacity(
               opacity: 0.0,

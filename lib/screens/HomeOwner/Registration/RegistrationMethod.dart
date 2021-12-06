@@ -13,8 +13,15 @@ class RegistrationMethod extends StatefulWidget {
 }
 
 class _RegistrationMethodState extends State<RegistrationMethod> {
+
+  GoogleSignInAccount _userObj;
+  GoogleSignIn _googleSignIn = GoogleSignIn();
+
   bool isLoggedIn = false;
   String name;
+  String profile;
+  String email;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -222,8 +229,26 @@ class _RegistrationMethodState extends State<RegistrationMethod> {
                       ),
                       // sign up with Google
                       InkWell(
-                        onTap: () {
-                          _googleSignIn();
+                        onTap: ()async {
+                          _googleSignIn.signIn().then((userData) {
+                            setState(() {
+                              _userObj = userData;
+                              profile = userData.photoUrl.toString();
+                              name = userData.displayName.toString();
+                              email = userData.email;
+                            });
+                            if (userData != null) {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ProfessionalHomeScreen())
+                              );
+                            }
+                          }).catchError((e) {
+                            print(e);
+                          });
+                          print(name);
+                          print(email);
                         },
                         child: Container(
                           child: Center(
@@ -256,37 +281,37 @@ class _RegistrationMethodState extends State<RegistrationMethod> {
     );
   }
 
-  _googleSignIn() async {
-    final googleSignIn = GoogleSignIn();
-    final signInAccount = await googleSignIn.signIn();
-
-    final googleAccountAuthentication = await signInAccount.authentication;
-
-    final credential = GoogleAuthProvider.credential(
-        accessToken: googleAccountAuthentication.accessToken,
-        idToken: googleAccountAuthentication.idToken);
-
-    await FirebaseAuth.instance.signInWithCredential(credential);
-
-    if (FirebaseAuth.instance.currentUser != null) {
-      print('Google Authentication Successful');
-      print('${FirebaseAuth.instance.currentUser.displayName} signed in.');
-      print('${FirebaseAuth.instance.currentUser.phoneNumber} phone number.');
-      print('${FirebaseAuth.instance.currentUser.email} phone number.');
-      widget.role == 'Homeowner'
-          ? Navigator.push(context,
-              MaterialPageRoute(builder: (context) => BottomNavigator()))
-          : Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => ProfessionalHomeScreen()));
-
-      setState(() {
-        isLoggedIn = true;
-        name = FirebaseAuth.instance.currentUser.displayName;
-      });
-    } else {
-      print('Unable to sign in');
-    }
-  }
+  // _googleSignIn() async {
+  //   final googleSignIn = GoogleSignIn();
+  //   final signInAccount = await googleSignIn.signIn();
+  //
+  //   final googleAccountAuthentication = await signInAccount.authentication;
+  //
+  //   final credential = GoogleAuthProvider.credential(
+  //       accessToken: googleAccountAuthentication.accessToken,
+  //       idToken: googleAccountAuthentication.idToken);
+  //
+  //   await FirebaseAuth.instance.signInWithCredential(credential);
+  //
+  //   if (FirebaseAuth.instance.currentUser != null) {
+  //     print('Google Authentication Successful');
+  //     print('${FirebaseAuth.instance.currentUser.displayName} signed in.');
+  //     print('${FirebaseAuth.instance.currentUser.phoneNumber} phone number.');
+  //     print('${FirebaseAuth.instance.currentUser.email} phone number.');
+  //     widget.role == 'Homeowner'
+  //         ? Navigator.push(context,
+  //             MaterialPageRoute(builder: (context) => BottomNavigator()))
+  //         : Navigator.push(
+  //             context,
+  //             MaterialPageRoute(
+  //                 builder: (context) => ProfessionalHomeScreen()));
+  //
+  //     setState(() {
+  //       isLoggedIn = true;
+  //       name = FirebaseAuth.instance.currentUser.displayName;
+  //     });
+  //   } else {
+  //     print('Unable to sign in');
+  //   }
+  // }
 }

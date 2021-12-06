@@ -49,10 +49,6 @@ class ProfileScreen extends StatelessWidget {
                     subtitle: 'kamranaminch@gmail.com',
                     icon: Icon(Icons.mail_outline),
                   ),
-                  ProfileItemsOnlyTitle(
-                    title: 'Change password',
-                    icon: Icon(Icons.lock),
-                  ),
                   ProfileScreenItems(
                     title: 'Gender',
                     subtitle: 'Male',
@@ -62,39 +58,6 @@ class ProfileScreen extends StatelessWidget {
                     title: 'Date of birth',
                     subtitle: '14 April 1999',
                     icon: Icon(Icons.calendar_today_outlined),
-                  ),
-                  ProfileItemsOnlyTitle(
-                    title: 'Create a business profile',
-                    icon: Icon(Icons.business_center_outlined),
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: Divider(
-                      color: kProfileScreenDividerColor,
-                      thickness: 3.0,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Text(
-                      'Earn rewards with partners',
-                      style: TextStyle(
-                        color: kProfileScreenHeadingColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18.0,
-                      ),
-                    ),
-                  ),
-                  ProfileItemsOnlyTitle(
-                    title: 'Loyality Partners',
-                    icon: Icon(Icons.business_center_outlined),
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: Divider(
-                      color: kProfileScreenDividerColor,
-                      thickness: 3.0,
-                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(16.0),
@@ -123,21 +86,6 @@ class ProfileScreen extends StatelessWidget {
                     child: ProfileItemsOnlyTitle(
                       title: 'Log Out',
                       icon: Icon(Icons.logout),
-                    ),
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: Divider(
-                      color: kProfileScreenDividerColor,
-                      thickness: 3.0,
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 40),
-                    child: ProfileScreenItems(
-                      title: 'Terms and conditions',
-                      subtitle: 'App Version 0.1 (0.1)',
                     ),
                   ),
                 ],

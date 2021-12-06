@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 const kRatingIcon = Icon(
   Icons.star_rate_rounded,
-  size: 15.0,
+  size: 12.0,
   color: Colors.white,
 );
 const kHomeScreenHeadings = TextStyle(

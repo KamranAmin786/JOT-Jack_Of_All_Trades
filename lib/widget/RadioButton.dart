@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fyp/AppColors.dart';
 
 class Radiobutton extends StatefulWidget {
+
   @override
   RadioButtonWidget createState() => RadioButtonWidget();
 }
@@ -13,7 +14,6 @@ class RadioButtonWidget extends State {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-
         Flexible(
           fit: FlexFit.loose,
           child: RadioListTile(

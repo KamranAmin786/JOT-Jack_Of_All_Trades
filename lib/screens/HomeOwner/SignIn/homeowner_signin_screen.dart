@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fyp/screens/HomeOwner/Registration/HomeownerRegistrationPage.dart';
+import 'package:fyp/screens/HomeOwner/Registration/HomeownerDataPage.dart';
 import 'package:fyp/components/InputField.dart';
 import 'package:fyp/screens/HomeOwner/Interactive/bottom_navigator.dart';
 
@@ -161,7 +161,7 @@ class HomeownerSignIn extends StatelessWidget {
                                       ),
                                     ),
                                     onTap: (){
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeownerRegistrationPage(role: 'Homeowner',)));
+                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeownerDataPage(role: 'Homeowner',)));
                                     },
                                   ),
                                 ],

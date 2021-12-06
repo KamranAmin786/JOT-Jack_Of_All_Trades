@@ -1,10 +1,23 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp/constants.dart';
 import 'package:fyp/components/featured_items.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:fyp/services/firebase_services.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   static const String id = 'home_screen';
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final firebaseFirestore = FirebaseFirestore.instance;
+  String serviceName;
+  String serviceImg;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,6 +27,7 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             children: <Widget>[
               Container(
+                width: double.infinity,
                 decoration: BoxDecoration(
                   color: kHomeContainerColor,
                   borderRadius: kHomeContainerStyle,
@@ -25,38 +39,27 @@ class HomeScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0),
                       child: Text(
-                        "text25".tr().toString(),
+                        'Welcome',
                         style: kHomeScreenHeadings,
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: TextField(
-                        onChanged: (value) {
-                          //Do something with the user input.
-                        },
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          hintText: "text26".tr().toString(),
-                          hintStyle: TextStyle(
-                            color: Colors.black,
-                          ),
-                          contentPadding: EdgeInsets.symmetric(
-                              vertical: 10.0, horizontal: 20.0),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25.0),
-                          ),
-                        ),
-                      ),
+                    SizedBox(
+                      height: 25.0,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0),
                       child: Text(
-                        "text27".tr().toString(),
+                        "text25".tr().toString(),
                         style: kHomeScreenHeadings,
                       ),
                     ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 20.0),
+                    //   child: Text(
+                    //     "text27".tr().toString(),
+                    //     style: kHomeScreenHeadings,
+                    //   ),
+                    // ),
                     SizedBox(
                       height: 20.0,
                     ),
@@ -77,59 +80,42 @@ class HomeScreen extends StatelessWidget {
                           margin: EdgeInsets.symmetric(
                               horizontal: 10.0, vertical: 10.0),
                           height: 180.0,
-                          child: ListView(
-                            scrollDirection: Axis.horizontal,
-                            children: <Widget>[
-                              FeaturedServices(
-                                name: "text28".tr().toString(),
-                                image: Image.asset(
-                                  'images/city_background.jpg',
-                                  fit: BoxFit.cover,
-                                ),
-                                icon: kRatingIcon,
-                              ),
-                              FeaturedServices(
-                                name: "text29".tr().toString(),
-                                image: Image.asset(
-                                  'images/city_background.jpg',
-                                  fit: BoxFit.cover,
-                                ),
-                                icon: kRatingIcon,
-                              ),
-                              FeaturedServices(
-                                name: "text30".tr().toString(),
-                                image: Image.asset(
-                                  'images/city_background.jpg',
-                                  fit: BoxFit.cover,
-                                ),
-                                icon: kRatingIcon,
-                              ),
-                              FeaturedServices(
-                                name: "text31".tr().toString(),
-                                image: Image.asset(
-                                  'images/city_background.jpg',
-                                  fit: BoxFit.cover,
-                                ),
-                                icon: kRatingIcon,
-                              ),
-                              FeaturedServices(
-                                name: "text32".tr().toString(),
-                                image: Image.asset(
-                                  'images/city_background.jpg',
-                                  fit: BoxFit.cover,
-                                ),
-                                icon: kRatingIcon,
-                              ),
-                              FeaturedServices(
-                                name: "text33".tr().toString(),
-                                image: Image.asset(
-                                  'images/city_background.jpg',
-                                  fit: BoxFit.cover,
-                                ),
-                                icon: kRatingIcon,
-                              ),
-                            ],
-                          ),
+                          child: FutureBuilder(
+                              future: firebaseFirestore
+                                  .collection("MainServices")
+                                  .get(),
+                              builder: (context, snapshots) {
+                                if (snapshots.hasData) {
+                                  final List<DocumentSnapshot> data =
+                                      snapshots.data.docs;
+                                  return ListView(
+                                    scrollDirection: Axis.horizontal,
+                                    children: data.map((doc) {
+                                      try {
+                                        serviceName =
+                                            doc.get(FieldPath(['name']));
+                                        serviceImg =
+                                            doc.get(FieldPath(['image']));
+                                      } on StateError catch (e) {
+                                        serviceName = e.message;
+                                        serviceImg = e.message;
+                                      }
+                                      return FeaturedServices(
+                                        name: serviceName,
+                                        image: Image.network(
+                                          serviceImg,
+                                          fit: BoxFit.cover,
+                                        ),
+                                        icon: kRatingIcon,
+                                      );
+                                    }).toList(),
+                                  );
+                                } else {
+                                  return Center(
+                                    child: Text('No Data Found'),
+                                  );
+                                }
+                              }),
                         ),
                         Container(
                           margin: EdgeInsets.symmetric(
