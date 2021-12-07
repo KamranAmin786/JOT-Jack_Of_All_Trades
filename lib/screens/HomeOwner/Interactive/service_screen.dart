@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:fyp/components/services_list.dart';
-import 'package:fyp/constants.dart';
+import 'package:fyp/navigator.dart';
 
 class ServiceScreen extends StatefulWidget {
   ServiceScreen({this.image, this.name});
@@ -17,6 +16,13 @@ class ServiceScreen extends StatefulWidget {
 class _ServiceScreenState extends State<ServiceScreen> {
   final firebase = FirebaseFirestore.instance;
   String subServiceName;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

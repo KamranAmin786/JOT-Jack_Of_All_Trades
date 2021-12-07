@@ -262,7 +262,7 @@ class _HomeownerDataPageState extends State<HomeownerDataPage> {
                             isLoading = true;
 
                           });
-                         await firebaseService.insertData(userName: userName.text,userUid: widget.userUid,email: email.text,birthDate: birthDate.text,gender: genderSelected);
+                         await firebaseService.insertHomeownerData(userName: userName.text,userUid: widget.userUid,email: email.text,birthDate: birthDate.text,gender: genderSelected,number: phoneNumber.text);
                           setState(() {
                             isLoading = false;
                           });

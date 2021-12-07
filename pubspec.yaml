@@ -39,9 +39,13 @@ dependencies:
   firebase_auth:
   firebase_core:
   cloud_firestore:
+  firebase_storage:
   datetime_picker_formfield:
   image_picker:
+  firebase_messaging:
+  flutter_local_notifications:
   easy_localization:
+  geocoding:
 
 dev_dependencies:
   flutter_test:

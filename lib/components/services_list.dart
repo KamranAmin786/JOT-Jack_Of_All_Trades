@@ -34,7 +34,7 @@ class ServicesList extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => TaskAssignment(),
+              builder: (context) => TaskAssignment(serviceName: name,),
             ),
           );
         },

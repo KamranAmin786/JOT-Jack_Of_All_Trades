@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fyp/AppColors.dart';
@@ -31,6 +32,7 @@ class _ProfessionalDataPageState
   String birthDateController;
   File cnicBack;
   File cnicFront;
+  String urlImage ;
 
   @override
   void initState() {
@@ -245,21 +247,24 @@ class _ProfessionalDataPageState
                                       color: Colors.green,
                                     )),
                         ),
-                        onTap: () {
-                          if (cnicFront == null) {
+                        onTap: () async {
+                          if (cnicFront == null)  {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
                                         ProfesssionalAddFrontCnicPage())).then((value) {
-                              if (value is File) {
-                                setState(() {
+                              if (value is File)  {
+                                setState(()  {
                                   print('Cnic front is Taken');
                                   cnicFront = value;
+                                  print('cnic value + $cnicFront');
                                 });
                               }
                             });
                           }
+                          await updatePhoto(cnicFront);
+                          print(updatePhoto(cnicFront).toString());
                         },
                       ),
                     ),
@@ -413,5 +418,17 @@ class _ProfessionalDataPageState
         ),
       ),
     );
+  }
+  Future<String> updatePhoto(File imageFile) async {
+    FirebaseStorage storage = FirebaseStorage.instance;
+    Reference ref = storage.ref().child('professional');
+    UploadTask uploadTask = ref.putFile(imageFile);
+    String url;
+    uploadTask.whenComplete(() async {
+      url = await ref.getDownloadURL();
+    }).catchError((onError) {
+      print(onError);
+    });
+    return url;
   }
 }

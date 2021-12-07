@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fyp/constants.dart';
 import 'package:fyp/screens/HomeOwner/Interactive/service_screen.dart';
+import 'package:fyp/screens/HomeOwner/Interactive/task_assignment_screen.dart';
 
 class FeaturedServices extends StatelessWidget {
   FeaturedServices({
@@ -8,6 +9,7 @@ class FeaturedServices extends StatelessWidget {
     this.name,
     this.image,
   });
+
   final String name;
   final Icon icon;
   final Image image;
@@ -35,27 +37,23 @@ class FeaturedServices extends StatelessWidget {
                     fontSize: 12.0,
                   ),
                 ),
-                subtitle: Row(
-                  children: <Widget>[
-                    icon,
-                    icon,
-                    icon,
-                    icon,
-                    icon,
-                  ],
-                ),
               ),
             ],
           ),
         ),
         onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => ServiceScreen(
-                        image: image,
-                        name: name,
-                      )));
+          if (name == "Mover") {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => TaskAssignment(serviceName: name,)));
+          } else {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ServiceScreen(
+                          image: image,
+                          name: name,
+                        )));
+          }
         },
       ),
     );

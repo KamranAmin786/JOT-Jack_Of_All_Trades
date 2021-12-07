@@ -20,19 +20,4 @@ class AuthService {
   }
 
   // sign out
-  signOut() {
-    firebaseAuth.signOut();
-  }
-
-  // sign in
-  signIn(AuthCredential authCredential) {
-    firebaseAuth.signInWithCredential(authCredential);
-  }
-
-  // sign in with OTP
-  signInWithOTP(smsCode, verId) {
-    AuthCredential authCredential =
-        PhoneAuthProvider.credential(verificationId: verId, smsCode: smsCode);
-    signIn(authCredential);
-  }
 }

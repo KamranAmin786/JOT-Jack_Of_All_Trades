@@ -1,12 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fyp/components/profile_items.dart';
-import 'package:fyp/components/profile_items_title_only.dart';
-import 'package:fyp/constants.dart';
-import 'package:fyp/services/auth_services.dart';
+import 'package:fyp/navigator.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   static const String id = 'profile_screen';
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +40,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   ProfileScreenItems(
                     title: 'Name',
-                    subtitle: 'Muhammad Kamran Amin CH',
+                    subtitle: '',
                     icon: Icon(Icons.account_circle_outlined),
                   ),
                   ProfileScreenItems(
@@ -81,7 +85,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      AuthService().signOut();
+                      signOut();
                     },
                     child: ProfileItemsOnlyTitle(
                       title: 'Log Out',
@@ -95,5 +99,10 @@ class ProfileScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  signOut() async {
+   await _firebaseAuth.signOut();
+   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => WelcomeScreen()));
   }
 }
