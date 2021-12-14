@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fyp/Professional/EarnMore.dart';
@@ -5,8 +6,17 @@ import 'package:fyp/Professional/ProfessionalJobView.dart';
 import 'package:fyp/Professional/Rewards.dart';
 import 'package:fyp/Professional/Settings.dart';
 import 'package:fyp/Professional/TaskPortal.dart';
+import 'package:fyp/welcome_screen.dart';
 
-class DrawerWidget extends StatelessWidget {
+class DrawerWidget extends StatefulWidget {
+  @override
+  _DrawerWidgetState createState() => _DrawerWidgetState();
+}
+
+class _DrawerWidgetState extends State<DrawerWidget> {
+
+  FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -235,7 +245,7 @@ class DrawerWidget extends StatelessWidget {
                 size: 18.0,
               ),
               onTap: () {
-                //TODO
+                signOut();
               },
             ),
             Divider(),
@@ -243,5 +253,10 @@ class DrawerWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+  signOut() async {
+    await _firebaseAuth.signOut();
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => WelcomeScreen()));
   }
 }

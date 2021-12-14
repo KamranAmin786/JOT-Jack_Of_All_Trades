@@ -75,7 +75,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
                           );
                         } else {
                           return Center(
-                            child: Text('No Data Found'),
+                            child: Text('Loading Data ...'),
                           );
                         }
                       }),

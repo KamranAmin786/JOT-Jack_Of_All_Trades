@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fyp/AppColors.dart';
+import 'package:fyp/AppAsset/AppColors.dart';
 
 class InputFieldApp extends StatelessWidget {
   final String text;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fyp/constants.dart';
+import 'package:fyp/AppAsset/constants.dart';
 import 'package:fyp/screens/HomeOwner/Interactive/service_screen.dart';
 import 'package:fyp/screens/HomeOwner/Interactive/task_assignment_screen.dart';
 
@@ -26,7 +26,7 @@ class FeaturedServices extends StatelessWidget {
           color: kHomeScreenItemBackgroundColor,
           child: Wrap(
             children: <Widget>[
-              image,
+              Container(child: image,height: 100,width: 155,),
               ListTile(
                 title: Text(
                   name,
@@ -42,7 +42,7 @@ class FeaturedServices extends StatelessWidget {
           ),
         ),
         onPressed: () {
-          if (name == "Mover") {
+          if (name == "Mover" || name =="Catcher Replacement" || name =="Door Installation" || name =="Door Lock and Catcher Replacement" || name =="Door Repairing" || name =="Drawer Repairing" || name =="Furniture Polish Service" || name =="Furniture Repairing" || name =="Sofa Repairing" || name =="Wardrobe Repairing"|| name =="Wooden Table and Chair Repairing" ) {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => TaskAssignment(serviceName: name,)));
           } else {

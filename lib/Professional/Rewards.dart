@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:fyp/AppAssets.dart';
-import 'package:fyp/AppColors.dart';
+import 'package:fyp/AppAsset/AppAssets.dart';
+import 'package:fyp/AppAsset/AppColors.dart';
 import 'package:fyp/widget/RewardProgressWidget.dart';
 import 'package:fyp/widget/RewardWidgets.dart';
 

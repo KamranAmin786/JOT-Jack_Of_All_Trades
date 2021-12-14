@@ -20,6 +20,8 @@ class _BottomNavigatorState extends State<BottomNavigator>
     WalletScreen(),
     ProfileScreen()
   ];
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,4 +99,5 @@ class _BottomNavigatorState extends State<BottomNavigator>
       ),
     );
   }
+
 }

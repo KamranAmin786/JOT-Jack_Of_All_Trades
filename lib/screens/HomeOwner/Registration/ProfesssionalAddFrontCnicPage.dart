@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fyp/AppColors.dart';
+import 'package:fyp/AppAsset/AppColors.dart';
 import 'package:fyp/widget/PrimaryButton.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io' as i;

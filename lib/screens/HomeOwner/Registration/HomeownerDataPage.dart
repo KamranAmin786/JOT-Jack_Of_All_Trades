@@ -1,18 +1,25 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:fyp/AppColors.dart';
+import 'package:fyp/AppAsset/AppColors.dart';
 import 'package:fyp/components/InputField.dart';
+import 'package:fyp/navigator.dart';
 import 'package:fyp/screens/HomeOwner/Interactive/bottom_navigator.dart';
 import 'package:fyp/services/firebase_services.dart';
 import 'package:fyp/widget/PrimaryButton.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeownerDataPage extends StatefulWidget {
   final String role;
   final String phoneNumber;
   final String userUid;
+  final String emailUser;
+  final String nameUser;
 
-  HomeownerDataPage({ this.role,  this.phoneNumber,  this.userUid});
+  HomeownerDataPage({ this.role,  this.phoneNumber,  this.userUid, this.emailUser, this.nameUser});
 
   @override
   _HomeownerDataPageState createState() =>
@@ -23,18 +30,29 @@ class _HomeownerDataPageState extends State<HomeownerDataPage> {
   TextEditingController birthDate = TextEditingController();
   TextEditingController phoneNumber = TextEditingController();
   TextEditingController userName = TextEditingController();
-  TextEditingController email = TextEditingController();
+  TextEditingController userEmail = TextEditingController();
   FirebaseService firebaseService = FirebaseService();
+  FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
 
    String birthDateController;
    String genderSelected;
    bool isLoading = false;
+   String firebaseMessagingToken;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    if (widget.emailUser != null && widget.emailUser != null){
+      userName.text = widget.nameUser;
+      userEmail.text = widget.emailUser;
+    }
     phoneNumber.text = widget.phoneNumber;
+    firebaseMessaging.getToken().then((value){
+      setState(() {
+        firebaseMessagingToken = value;
+      });
+    });
   }
 
   @override
@@ -111,7 +129,7 @@ class _HomeownerDataPageState extends State<HomeownerDataPage> {
                       InputField(
                         text: "text20".tr().toString(), // Enter your email
                         icon: Icons.email,
-                        controller: email,
+                        controller: userEmail,
                       ),
                       SizedBox(
                         height: 30.0,
@@ -120,7 +138,9 @@ class _HomeownerDataPageState extends State<HomeownerDataPage> {
                         text: "text21".tr().toString(), // Enter your number
                         icon: Icons.phone,
                         controller: phoneNumber,
-                        enabled: false,
+                        enabled: widget.nameUser != null ? true : false,
+                        type: TextInputType.phone,
+                        validator: validateMobile,
                       ),
                       SizedBox(
                         height: 30.0,
@@ -258,18 +278,15 @@ class _HomeownerDataPageState extends State<HomeownerDataPage> {
                         endGradient: colorWhite,
                         width: 220.0,
                         onPressed: () async {
-                          setState(() {
-                            isLoading = true;
-
-                          });
-                         await firebaseService.insertHomeownerData(userName: userName.text,userUid: widget.userUid,email: email.text,birthDate: birthDate.text,gender: genderSelected,number: phoneNumber.text);
+                          if(validate()){
+                            setState(() {
+                              isLoading = true;
+                            });
+                            await insertHomeownerData(userName: userName.text,userUid: widget.userUid,email: userEmail.text,birthDate: birthDate.text,gender: genderSelected,number: phoneNumber.text,firebaseMessagingToken: firebaseMessagingToken);
+                          }
                           setState(() {
                             isLoading = false;
                           });
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => BottomNavigator()));
                         },
                       ),
                     ],
@@ -292,6 +309,64 @@ class _HomeownerDataPageState extends State<HomeownerDataPage> {
           ],
         ),
       ),
+    );
+  }
+  bool validate (){
+    String name = userName.text;
+    String email = userEmail.text;
+    String dateOfBirth = birthDate.text;
+    String genderUser = genderSelected;
+
+    if (name.isEmpty){
+      showScaffold(context , 'PLease enter your name');
+      return false;
+    }
+    if (email.isEmpty){
+      showScaffold(context , 'PLease enter your email');
+      return false;
+    }
+    if (dateOfBirth.isEmpty){
+      showScaffold(context , 'PLease enter your date of birth');
+      return false;
+    }
+    if (genderUser.isEmpty){
+      showScaffold(context , 'PLease select your Gender');
+      return false;
+    }
+    return true;
+  }
+  Future<void> insertHomeownerData(
+      {String userUid,
+        String userName,
+        String birthDate,
+        String email,
+        String number,
+        String gender,String firebaseMessagingToken,bool getData}) async {
+    var db = FirebaseFirestore.instance.collection('Homeowner');
+
+    Map<String, dynamic> userData = {
+      'userName': userName,
+      'birthDate': birthDate,
+      'email': email,
+      'gender': gender,
+      'phoneNumber': number,
+      'firebaseMessagingToken':firebaseMessagingToken,
+    };
+    await db.doc('$userUid').set(userData);
+
+    SharedPreferences preferencesHomeowner =
+    await SharedPreferences.getInstance();
+    preferencesHomeowner.setString('userName', userName);
+    preferencesHomeowner.setString('userUid', userUid);
+    preferencesHomeowner.setString('birthDate', birthDate);
+    preferencesHomeowner.setString('email', email);
+    preferencesHomeowner.setString('gender', gender);
+    preferencesHomeowner.setString('phoneNumber', number);
+
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (context) => BottomNavigator())
     );
   }
 }

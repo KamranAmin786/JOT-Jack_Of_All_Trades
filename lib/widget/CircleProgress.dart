@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:fyp/AppColors.dart';
+import 'package:fyp/AppAsset/AppColors.dart';
 import 'dart:math';
 
 class CircleProgress extends CustomPainter {

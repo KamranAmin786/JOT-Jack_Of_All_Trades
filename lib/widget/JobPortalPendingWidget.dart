@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fyp/AppColors.dart';
+import 'package:fyp/AppAsset/AppColors.dart';
 import 'package:fyp/Professional/PendingTaskView.dart';
 
 class JobPortalPendingWidget extends StatelessWidget {

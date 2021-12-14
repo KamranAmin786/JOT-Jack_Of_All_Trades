@@ -1,12 +1,10 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:fyp/main.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_place_picker/google_maps_place_picker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:geocoding/geocoding.dart';
 
 class TaskAssignment extends StatefulWidget {
   final String serviceName;
@@ -19,6 +17,7 @@ class TaskAssignment extends StatefulWidget {
 }
 
 class _TaskAssignmentState extends State<TaskAssignment> {
+  FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
   LatLng _center;
   TextEditingController feet = TextEditingController();
   Position currentLocation;
@@ -195,7 +194,7 @@ class _TaskAssignmentState extends State<TaskAssignment> {
                           height: 25,
                         ),
                         Text(
-                          'Finding a Handyman for you',
+                          'Finding a Professional for you',
                           style: TextStyle(color: Colors.white, fontSize: 15),
                         ),
                       ],

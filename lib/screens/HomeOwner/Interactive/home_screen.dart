@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fyp/constants.dart';
+import 'package:fyp/AppAsset/constants.dart';
 import 'package:fyp/components/featured_items.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:fyp/services/firebase_services.dart';
+import 'package:fyp/widget/featured_professionals.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = 'home_screen';
@@ -17,6 +17,8 @@ class _HomeScreenState extends State<HomeScreen> {
   final firebaseFirestore = FirebaseFirestore.instance;
   String serviceName;
   String serviceImg;
+  String subServiceName;
+  String subServiceImg;
 
   @override
   Widget build(BuildContext context) {
@@ -121,59 +123,42 @@ class _HomeScreenState extends State<HomeScreen> {
                           margin: EdgeInsets.symmetric(
                               horizontal: 10.0, vertical: 10.0),
                           height: 180.0,
-                          child: ListView(
-                            scrollDirection: Axis.horizontal,
-                            children: <Widget>[
-                              FeaturedServices(
-                                name: "text34".tr().toString(),
-                                image: Image.asset(
-                                  'images/city_background.jpg',
-                                  fit: BoxFit.cover,
-                                ),
-                                icon: kRatingIcon,
-                              ),
-                              FeaturedServices(
-                                name: "text35".tr().toString(),
-                                image: Image.asset(
-                                  'images/city_background.jpg',
-                                  fit: BoxFit.cover,
-                                ),
-                                icon: kRatingIcon,
-                              ),
-                              FeaturedServices(
-                                name: "text36".tr().toString(),
-                                image: Image.asset(
-                                  'images/city_background.jpg',
-                                  fit: BoxFit.cover,
-                                ),
-                                icon: kRatingIcon,
-                              ),
-                              FeaturedServices(
-                                name: "text37".tr().toString(),
-                                image: Image.asset(
-                                  'images/city_background.jpg',
-                                  fit: BoxFit.cover,
-                                ),
-                                icon: kRatingIcon,
-                              ),
-                              FeaturedServices(
-                                name: "text38".tr().toString(),
-                                image: Image.asset(
-                                  'images/city_background.jpg',
-                                  fit: BoxFit.cover,
-                                ),
-                                icon: kRatingIcon,
-                              ),
-                              FeaturedServices(
-                                name: "text39".tr().toString(),
-                                image: Image.asset(
-                                  'images/city_background.jpg',
-                                  fit: BoxFit.cover,
-                                ),
-                                icon: kRatingIcon,
-                              ),
-                            ],
-                          ),
+                          child: FutureBuilder(
+                              future: firebaseFirestore
+                                  .collection("MainServices").doc('Carpenter').collection('SubServices')
+                                  .get(),
+                              builder: (context, snapshots) {
+                                if (snapshots.hasData) {
+                                  final List<DocumentSnapshot> data =
+                                      snapshots.data.docs;
+                                  return ListView(
+                                    scrollDirection: Axis.horizontal,
+                                    children: data.map((doc) {
+                                      try {
+                                        subServiceName =
+                                            doc.get(FieldPath(['name']));
+                                        subServiceImg =
+                                            doc.get(FieldPath(['image']));
+                                      } on StateError catch (e) {
+                                        subServiceName = e.message;
+                                        subServiceImg = e.message;
+                                      }
+                                      return FeaturedServices(
+                                        name: subServiceName,
+                                        image: Image.network(
+                                          subServiceImg,
+                                          fit: BoxFit.cover,
+                                        ),
+                                        icon: kRatingIcon,
+                                      );
+                                    }).toList(),
+                                  );
+                                } else {
+                                  return Center(
+                                    child: Text('No Data Found'),
+                                  );
+                                }
+                              }),
                         ),
                         Container(
                           margin: EdgeInsets.symmetric(
@@ -182,7 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: ListView(
                             scrollDirection: Axis.horizontal,
                             children: <Widget>[
-                              FeaturedServices(
+                              FeaturedProfessional(
                                 name: "text4".tr().toString(),
                                 image: Image.asset(
                                   'images/city_background.jpg',
@@ -190,7 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 icon: kRatingIcon,
                               ),
-                              FeaturedServices(
+                              FeaturedProfessional(
                                 name: "text4".tr().toString(),
                                 image: Image.asset(
                                   'images/city_background.jpg',
@@ -198,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 icon: kRatingIcon,
                               ),
-                              FeaturedServices(
+                              FeaturedProfessional(
                                 name: "text4".tr().toString(),
                                 image: Image.asset(
                                   'images/city_background.jpg',
@@ -206,7 +191,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 icon: kRatingIcon,
                               ),
-                              FeaturedServices(
+                              FeaturedProfessional(
                                 name: "text4".tr().toString(),
                                 image: Image.asset(
                                   'images/city_background.jpg',
@@ -214,7 +199,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 icon: kRatingIcon,
                               ),
-                              FeaturedServices(
+                              FeaturedProfessional(
                                 name: "text4".tr().toString(),
                                 image: Image.asset(
                                   'images/city_background.jpg',
@@ -222,7 +207,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 icon: kRatingIcon,
                               ),
-                              FeaturedServices(
+                              FeaturedProfessional(
                                 name: "text4".tr().toString(),
                                 image: Image.asset(
                                   'images/city_background.jpg',

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fyp/AppColors.dart';
+import 'package:fyp/AppAsset/AppColors.dart';
 
 const progressIndicatorStyle =
     TextStyle(color: colorBlack, fontWeight: FontWeight.w900, fontSize: 12.0);

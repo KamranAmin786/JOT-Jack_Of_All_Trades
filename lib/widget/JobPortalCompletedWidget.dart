@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fyp/AppColors.dart';
+import 'package:fyp/AppAsset/AppColors.dart';
 
 class JobPortalCompletedWidget extends StatelessWidget {
   final String category;

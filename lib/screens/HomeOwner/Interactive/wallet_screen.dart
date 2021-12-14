@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fyp/constants.dart';
+import 'package:fyp/AppAsset/constants.dart';
 
 class WalletScreen extends StatelessWidget {
   static const String id = 'wallet_screen';
@@ -182,116 +182,120 @@ class WalletScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            'FRI, MAR 12',
+                            'THURS, DEC 9',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
                     ),
-                    Card(
-                      elevation: 0.0,
-                      child: ListTile(
-                        title: Text('AC Installation'),
-                        subtitle: Text(
-                          '02:57 PM | JOT',
-                          style: TextStyle(
-                              color: Colors.black87,
-                              fontSize: 15.0,
-                              letterSpacing: 1.25),
-                        ),
-                        trailing: Text(
-                          '- PKR 0.27',
-                          style: TextStyle(
-                              color: Colors.black87,
-                              fontSize: 15.0,
-                              letterSpacing: 1.25),
-                        ),
-                        leading: Padding(
-                          padding: EdgeInsets.only(top: 5.0),
-                          child: CircleAvatar(
-                            backgroundColor: kWalletScreenAppIconBackground,
-                            child: Icon(
-                              Icons.handyman,
-                              color: kAppIconsColor,
-                            ),
-                          ),
-                        ),
-                      ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 50.0),
+                      child: Center(child: Text('Nothig to show')),
                     ),
-                    SizedBox(
-                      width: double.infinity,
-                      child: Divider(
-                        color: Colors.grey,
-                        thickness: 2.0,
-                      ),
-                    ),
-                    Card(
-                      elevation: 0.0,
-                      child: ListTile(
-                        title: Text('Credit Added'),
-                        subtitle: Text(
-                          '10:15 PM | JOT Pay',
-                          style: TextStyle(
-                              color: Colors.black87,
-                              fontSize: 15.0,
-                              letterSpacing: 1.25),
-                        ),
-                        trailing: Text(
-                          '+ PKR 0.27',
-                          style: TextStyle(
-                              color: Colors.black87,
-                              fontSize: 15.0,
-                              letterSpacing: 1.25),
-                        ),
-                        leading: Padding(
-                          padding: EdgeInsets.only(top: 5.0),
-                          child: CircleAvatar(
-                            backgroundColor: kWalletScreenAppIconBackground,
-                            child: Icon(
-                              Icons.money,
-                              color: kAppIconsColor,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      child: Divider(
-                        color: Colors.grey,
-                        thickness: 2.0,
-                      ),
-                    ),
-                    Card(
-                      elevation: 0.0,
-                      child: ListTile(
-                        title: Text('Plumber'),
-                        subtitle: Text(
-                          '10:15 PM | JOT',
-                          style: TextStyle(
-                              color: Colors.black87,
-                              fontSize: 15.0,
-                              letterSpacing: 1.25),
-                        ),
-                        trailing: Text(
-                          '- PKR 0.27',
-                          style: TextStyle(
-                              color: Colors.black87,
-                              fontSize: 15.0,
-                              letterSpacing: 1.25),
-                        ),
-                        leading: Padding(
-                          padding: EdgeInsets.only(top: 5.0),
-                          child: CircleAvatar(
-                            backgroundColor: kWalletScreenAppIconBackground,
-                            child: Icon(
-                              Icons.handyman,
-                              color: kAppIconsColor,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    // Card(
+                    //   elevation: 0.0,
+                    //   child: ListTile(
+                    //     title: Text('AC Installation'),
+                    //     subtitle: Text(
+                    //       '02:57 PM | JOT',
+                    //       style: TextStyle(
+                    //           color: Colors.black87,
+                    //           fontSize: 15.0,
+                    //           letterSpacing: 1.25),
+                    //     ),
+                    //     trailing: Text(
+                    //       '- PKR 0.27',
+                    //       style: TextStyle(
+                    //           color: Colors.black87,
+                    //           fontSize: 15.0,
+                    //           letterSpacing: 1.25),
+                    //     ),
+                    //     leading: Padding(
+                    //       padding: EdgeInsets.only(top: 5.0),
+                    //       child: CircleAvatar(
+                    //         backgroundColor: kWalletScreenAppIconBackground,
+                    //         child: Icon(
+                    //           Icons.handyman,
+                    //           color: kAppIconsColor,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                    // SizedBox(
+                    //   width: double.infinity,
+                    //   child: Divider(
+                    //     color: Colors.grey,
+                    //     thickness: 2.0,
+                    //   ),
+                    // ),
+                    // Card(
+                    //   elevation: 0.0,
+                    //   child: ListTile(
+                    //     title: Text('Credit Added'),
+                    //     subtitle: Text(
+                    //       '10:15 PM | JOT Pay',
+                    //       style: TextStyle(
+                    //           color: Colors.black87,
+                    //           fontSize: 15.0,
+                    //           letterSpacing: 1.25),
+                    //     ),
+                    //     trailing: Text(
+                    //       '+ PKR 0.27',
+                    //       style: TextStyle(
+                    //           color: Colors.black87,
+                    //           fontSize: 15.0,
+                    //           letterSpacing: 1.25),
+                    //     ),
+                    //     leading: Padding(
+                    //       padding: EdgeInsets.only(top: 5.0),
+                    //       child: CircleAvatar(
+                    //         backgroundColor: kWalletScreenAppIconBackground,
+                    //         child: Icon(
+                    //           Icons.money,
+                    //           color: kAppIconsColor,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                    // SizedBox(
+                    //   width: double.infinity,
+                    //   child: Divider(
+                    //     color: Colors.grey,
+                    //     thickness: 2.0,
+                    //   ),
+                    // ),
+                    // Card(
+                    //   elevation: 0.0,
+                    //   child: ListTile(
+                    //     title: Text('Plumber'),
+                    //     subtitle: Text(
+                    //       '10:15 PM | JOT',
+                    //       style: TextStyle(
+                    //           color: Colors.black87,
+                    //           fontSize: 15.0,
+                    //           letterSpacing: 1.25),
+                    //     ),
+                    //     trailing: Text(
+                    //       '- PKR 0.27',
+                    //       style: TextStyle(
+                    //           color: Colors.black87,
+                    //           fontSize: 15.0,
+                    //           letterSpacing: 1.25),
+                    //     ),
+                    //     leading: Padding(
+                    //       padding: EdgeInsets.only(top: 5.0),
+                    //       child: CircleAvatar(
+                    //         backgroundColor: kWalletScreenAppIconBackground,
+                    //         child: Icon(
+                    //           Icons.handyman,
+                    //           color: kAppIconsColor,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
